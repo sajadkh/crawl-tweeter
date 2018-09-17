@@ -15,13 +15,13 @@ api = tweepy.API(auth, wait_on_rate_limit=True)
 with open('sajad.csv', 'r') as names:
     reader = csv.reader(names,  quotechar='|')
     for name in reader:
-        name[0].replace(" ", "_")
+        n = "_".join(name[0].split())
         # Open/Create a file to append data
-        csvFile = open(name[0] + '.csv', 'a')
+        csvFile = open(n + '.csv', 'a')
         # Use csv Writer
         csvWriter = csv.writer(csvFile)
 
-        for tweet in tweepy.Cursor(api.search, q="#" + name[0], count=200,
+        for tweet in tweepy.Cursor(api.search, q="#" + n, count=200,
                                    lang="en",
                                    since="2018-09-07", until="2018-09-17").items():
             # print (tweet.created_at, tweet.text, tweet.user.name, tweet.user.screen_name, tweet.user.location, tweet.retweet_count, tweet.favorite_count)
