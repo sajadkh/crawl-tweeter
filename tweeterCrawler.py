@@ -12,10 +12,10 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth, wait_on_rate_limit=True)
 
-with open('sajad.csv', 'rb') as names:
+with open('sajad.csv', 'r') as names:
     reader = csv.reader(names, delimiter=' ', quotechar='|')
     for name in reader:
-        name.replace(" ", "_");
+        name.replace(" ", "_")
         # Open/Create a file to append data
         csvFile = open(name + '.csv', 'a')
         # Use csv Writer
